@@ -41,7 +41,7 @@ async function createPortfolio(tipoContratoColumn, signers) {
     const jwt = await generateJWT();
 
     try {
-        const response = await axios.post(`${urlApi}/portfolio`, {
+        const response = await axios.post(`${urlApi}portfolio`, {
             contract_type: tipoContratoColumn,
             signers: signers
         }, {
@@ -64,7 +64,7 @@ async function uploadDocumentToPortfolio(portfolioId, documentFilePath) {
 
     try {
         const documentBase64 = encodeFileToBase64(documentFilePath);
-        const response = await axios.post(`${urlApi}/portfolio/${portfolioId}/document`, {
+        const response = await axios.post(`${urlApi}portfolio/${portfolioId}/document`, {
             document: documentBase64,
             document_format: 'pdf'
         }, {
@@ -87,7 +87,7 @@ async function assignIdentityDocument(portfolioId, signerNin, documentPath, docu
 
     try {
         const documentBase64 = encodeFileToBase64(documentPath);
-        const response = await axios.post(`${urlApi}/portfolio_signer_document`, {
+        const response = await axios.post(`${urlApi}portfolio_signer_document`, {
             portfolio_id: portfolioId,
             document: documentBase64,
             signer_nin: signerNin,
@@ -115,7 +115,7 @@ async function initiateSigningProcess(portfolioId) {
     const jwt = await generateJWT();
 
     try {
-        const response = await axios.post(`${urlApi}/start_portfolio_signing`, {
+        const response = await axios.post(`${urlApi}start_portfolio_signing`, {
             portfolio_id: portfolioId
         }, {
             headers: {
